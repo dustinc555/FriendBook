@@ -1,0 +1,199 @@
+/* constants for all pages */
+body {
+    background-color: black;
+    color: azure;
+    border: solid silver thick;
+    border-radius: 3em;
+    padding: 10px;
+}
+
+nav {
+    width: 15%;
+    float: left;
+    height: 500px;
+    background-color: black;
+    color: azure;
+    border: solid silver thick;
+    text-align: center;
+    margin: 10px;
+    padding-right: 20px;
+}
+
+header {
+    background-color: black;
+    color: azure;
+    border: solid silver thick;
+    margin: 10px;
+    padding: 10px;
+    padding-top: 15px;
+    padding-left: 15px;
+    border-top-left-radius: 3em;
+    border-top-right-radius: 3em;
+}
+
+footer {
+    clear: both;
+    position: relative;
+    z-index: 10;
+    margin-top: -3em;
+    background-color: black;
+    color: azure;
+    border: solid silver thick;
+    border-radius: 3em;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin: 10px;
+    text-align: center;
+}
+
+a {
+    color: darkturquoise;
+}
+
+a:hover {
+    -webkit-stroke-width: 5.3px;
+
+     -webkit-stroke-color: #FFFFFF;
+
+     -webkit-fill-color: #FFFFFF;
+
+     text-shadow: 1px 0px 20px yellow;
+
+     -webkit-transition: width 0.3s; /*Safari & Chrome*/
+
+     transition: width 0.3s;
+
+     -moz-transition: width 0.3s; /* Firefox 4 */
+
+     -o-transition: width 0.3s; /* Opera */
+}
+
+strong {
+    color: darkgoldenrod;
+}
+
+/***** CLASSES *****/
+.out-of-energy {
+    color: orangered;
+}
+.attack-friend {
+    display: inline-block;
+    
+}
+
+.market-item {
+    border: solid thick silver;
+    text-align: center;
+    padding: 15px;
+    margin: 10px;
+    width: 200px;
+    display: inline-block;
+    height: 300px;
+}
+
+.errorlist {
+    font-size: 3em;
+    color: orangered;
+}
+
+.delete_comment {
+    margin: 10px;
+    float: right;
+}
+
+.delete_comment:hover {
+    background-color: aqua;
+    border-color: darkturquoise;
+}
+
+.comment_page_comment {
+    margin: 25px;
+    padding: 20px;
+    background-color: black;
+    color: azure;
+    border: solid silver thick;
+    width: 50%;
+    overflow: scroll;
+}
+
+ul.no_dot {
+    list-style-type: none;
+}
+
+.friend_page_image {
+    border: dotted thick silver;
+}
+
+.friend_page_comment {
+    margin: 25px;
+    padding: 20px;
+    background-color: black;
+    color: azure;
+    border: solid silver thick;
+    width: 50%;
+    overflow: scroll;
+}
+
+.glow {
+    color: #FFFFFF;
+
+     -webkit-stroke-width: 5.3px;
+
+     -webkit-stroke-color: #FFFFFF;
+
+     -webkit-fill-color: #FFFFFF;
+
+     text-shadow: 1px 0px 20px yellow;
+
+     -webkit-transition: width 0.3s; /*Safari & Chrome*/
+
+     transition: width 0.3s;
+
+     -moz-transition: width 0.3s; /* Firefox 4 */
+
+     -o-transition: width 0.3s; /* Opera */
+}
+
+.ladder_list {
+    list-style-type: upper-roman;
+    margin-left: 150px;
+}
+
+.friend-header {
+    color: gold;
+}
+
+/***** ID's *****/
+
+#logo-image {
+    border-top-left-radius: 3em;
+}
+
+#id_comment {
+    clear: both;
+    border: dotted thick silver;
+    width: 450px;
+}
+
+#content {
+    background-color: black;
+    color: ghostwhite;
+    height: 500px;
+    overflow: auto;
+}
+
+#energy_style {
+    color: greenyellow;
+    font-style: normal;
+}
+
+#diamond_style {
+    font-style: normal;
+    
+    color: lightskyblue;
+    
+    webkit-stroke-width: 5.3px;
+
+    text-shadow: 1px 0px 20px aliceblue;
+
+}

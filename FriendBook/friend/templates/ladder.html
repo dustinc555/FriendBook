@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <ol>
+        {% for friend in friends %}
+        <li class="ladder_list"><strong>Name: </strong><a href="{% url 'friend_page' friend_id=friend.id %}">{{ friend }}</a>
+            <strong>Attack: </strong>{{ friend.attack }}
+            <strong>Defense:</strong>{{ friend.defense }}
+            <strong>Diamond Gen:</strong>{{ friend.diamond_gen }}
+            <strong>Diamonds: </strong>{{ friend.diamonds }}</li>
+        <hr />
+        {% endfor %}
+    </ol>
+{% endblock %}

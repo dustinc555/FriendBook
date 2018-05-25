@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if cannot_buy %}
+    <h1 class="cannot-buy">Sorry, you don't have enough diamonds for that.</h1>
+    {% else %} 
+    <h1 class="market-welcome">Welcome to the market. Get ur stuff n get out!</h1>
+    {% endif %}
+    {% for item in items %}
+    <div class="market-item" ><img src="{{ item.item_image.url }}" height="150" width="150"/>
+        <br /><h3 class="item-name">{{ item }}</h3>
+        {% if item.attack_boost %}<br /><strong>Attack Boost:</strong> {{ item.attack_boost }} {% endif %}
+        {% if item.defense_boost %}<br /><strong>Defense Boost:</strong> {{ item.defense_boost }} {% endif %}
+        {% if item.energy_boost %}<br /><strong>Energy Boost: </strong> {{ item.energy_boost }} {% endif %}
+        {% if item.diamond_gen_boost %}<br /><strong>Diamond Gen Boost:</strong> {{ item.diamond_gen_boost }} {% endif %}
+        <br /><strong>Cost: </strong>{{ item.cost }} <br />
+        <br /><form {% if user.friend.diamonds >= item.cost %} onsubmit="return purchaseSuccessful();" {% endif %} method="get" action="{% url 'buy_item' item_id=item.id %}"><input type="submit" value="Buy"/></form></div>
+    {% endfor %}
+{% endblock %}
+
+{% block script %}
+
+function purchaseSuccessful() {
+    alert('Purchase Successful!');
+}
+
+{% endblock %}

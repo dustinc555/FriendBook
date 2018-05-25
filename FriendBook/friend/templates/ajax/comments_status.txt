@@ -1,0 +1,11 @@
+{% for comment in comments %}
+    <li class="comment_page_comment"><strong><a href="{% url 'friend_page' friend_id=comment.commenter.id %}" >{{ comment.commenter }}</a> said:</strong><br />{{ comment }}<br />
+        
+    {% if user.is_authenticated and comment.commenter == user.friend %}
+        <form action="{% url 'del_cp_comment' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="comment_id" value="{{ comment.id }}"/>
+            <button class="delete_comment" onclick="prompt_delete_cp_comment({{ comment.id }})">[x]</a>
+        </form></li>
+    {% endif %}
+{% endfor %}

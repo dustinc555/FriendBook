@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'topic_search' %}" method="get">
+            Search: <input type="text" name="search_string" value="{% if search %} {{ search }} {% endif %}" /> <input type="submit" value"Search" />
+</form>
+<hr />
+{% for topic in topics %}
+    <li class="friend_search_list"><strong>Name: </strong><a href="{% url 'topic_page' topic_id=topic.id %}">{{ topic }}</a></li>
+{% endfor %}
+{% endblock %}

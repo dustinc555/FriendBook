@@ -1,0 +1,17 @@
+	FriendBook!
+Purpose: The purpose of this project is to design a fun little site that people can freely create an account with
+ and begin to play/socialize on the site.
+
+Process: All pages are login_required exept the home page, or index.html. If the user attepts to go to any other pages, it will redirect
+them to the login page. There is a clickable lick on the home page to create an account, and it does a little bit of varification like: check to see if the username is taken.
+There are a few pages like the 
+	Plaza: a simple social page that updates itself every few seconds to see if anyone else made a comment.
+	Market: allows users to buy items to better their avatar.
+	Ladder: list's all friends with the best at the top. 
+	friend_page or My Friend Page: displays the friend with the specific friend_id and all of their info!
+
+
+
+Mistakes: Mannnnnnnnnny.
+
+Resources: Django!

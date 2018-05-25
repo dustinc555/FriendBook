@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+        <h3 class="friend-header">{{ friend }}</h3>
+        <hr />
+        
+        <div>
+            {% if image %}
+                <img class="friend_page_image" src="{{ image.url }}" width="200"/> <br />
+            {% endif %}
+            
+            {% if is_users_page %}
+                <p><a href="{% url 'edit_friend_picture' friend_id=user.friend.id %}" >Upload or edit profile image here</a></p>
+                <p><a href="{% url 'edit_user_info' friend_id=user.friend.id %}" >Edit info here</a></p>
+                <p>Show info: Turn &mdash;<a href="{% url 'show_info' friend_id=user.friend.id %}">{% if show_info %} Off {% else %} On {% endif %}</a></p>
+            {% endif %}
+            
+            <p><strong>Username: </strong>{{ friend.user.username }}</p>
+            {% if friend.email %}
+                <p><strong>Email: </strong>{{ friend.user.email }}</p>
+            {% endif %}
+            {% if show_info %}
+                {% if friend.user.first_name %}
+                    <p><strong>First Name: </strong>{{ friend.user.first_name }}</p>
+                {% endif %}
+                {% if friend.user.last_name %}
+                    <p><strong>Last Name:</strong>{{ friend.user.last_name }}</p>
+                {% endif %}
+                {% if friend.user.email %}
+                    <p><strong>Email: </strong>{{ friend.user.email }}</p>
+                {% endif %}
+            {% endif %}
+            <p><strong>Diamonds: </strong>{{ friend.diamonds }} {% if is_users_page %}
+                                                                {% else %} &mdash; <form class="attack-friend" method="get" action="{% url 'attack_friend' defender_id=friend.id %}" ><input type="submit" value="Steal Diamonds (5 energy)"/></form>
+                                                                    {% if out_of_energy %}
+                                                                        <h3 class="out-of-energy">Slow down there. You're out of energy.</h3>
+                                                                    {% endif %}
+                                                                    {% if newAttack %}<p>
+                                                                        {% if newAttack.attack_success %} <h3>Attack was successful! Diamonds stolen: {{ newAttack.diamonds_stolen }}</h3> 
+                                                                        {% else %}<h3>Attack failed! No diamonds stolen.</h3>
+                                                                        {% endif %}
+                                                                    {% endif %}</p>
+                                                                {% endif %}</p>
+            <p><strong>Attack: </strong>{{ friend.attack }}</p>
+            <p><strong>Defense: </strong>{{ friend.defense }}</p>
+            <p><strong>Diamond Gen: </strong>{{ friend.diamond_gen }}</p>
+            
+            <hr />
+            <h3>Comments{% if is_users_page %} on your page {% endif %}:</h3>
+            <ul style="list-style-type: none;">
+                {% for comment in comments %}
+                    <li class="friend_page_comment"><strong><a href="{% url 'friend_page' friend_id=comment.commenter.id %}">{{ comment.commenter }}</a> said:</strong><br />{{ comment }} <br />
+                        {% if user.is_authenticated and comment.commenter == user.friend %}
+                            <form action="{% url 'del_fp_comment' %}" method="post" onsubmit="return prompt_delete_tp_comment();">
+                                {% csrf_token %}
+                                <input type="hidden" name="comment_id" value="{{ comment.id }}"/>
+                                <input type="hidden" name="is_users_page" value="{{ is_users_page }}"/>
+                                <input type="hidden" name="friend_id" value="{{ friend.id }}"/>
+                                <button class="delete_comment">[x]</button>
+                            </form>
+                    {% endif %}</li>
+                {% endfor %}
+                
+                <h3>Add a comment here:</h3>
+                <p>Maxlength of 300 characters.</p>
+                <form action="{% url 'friend_page' friend_id=friend.id %}" method="post">
+                    {{ form }}
+                    {% csrf_token %}
+                    <input type="submit"/>
+                </form>
+            </ul>
+        </div>
+{% endblock %}

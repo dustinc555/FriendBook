@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+
+	<head>
+
+		<title>FriendBook!</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link rel="stylesheet" href="{% static 'friend/main.css' %}" />
+
+        <script>
+            {% comment %} fpORcp - friend page or comment page {% endcomment %}
+            function prompt_delete_fp_comment()
+            {
+                return confirm('Are you sure you wanna delete this?');
+            }
+
+            {% comment %} THIS IS DIFFERENT FROM THE ABOVE CODE {% endcomment %}
+            function prompt_delete_cp_comment()
+            {
+                return confirm('Are you sure you wanna delete this?');
+            }
+
+            function prompt_delete_tp_comment()
+            {
+                return confirm('Are you sure you wanna delete this?');
+            }
+
+
+            function get_energy(){
+                var element = document.getElementById("energy_status");
+                request = new XMLHttpRequest();
+                request.onreadystatechange = function() {
+                if (request.readyState == 4 && request.status == 200)
+                                element.innerHTML = request.responseText;
+                };
+                    request.open("GET", "{% url 'ajax_energy_status' %}", true);
+                    request.send();
+
+            }
+
+            function get_diamonds(){
+                var element = document.getElementById("diamond_status");
+                request = new XMLHttpRequest();
+                request.onreadystatechange = function() {
+                if (request.readyState == 4 && request.status == 200)
+                    element.innerHTML = request.responseText;
+                };
+                    request.open("GET", "{% url 'ajax_diamond_status' %}", true);
+                    request.send();
+
+            }
+
+
+            {% if user.is_authenticated %}
+            window.onload = function(){
+                window.setInterval(function() {
+                    get_energy()
+                    }, 5001);
+
+                window.setInterval(function() {
+                    get_diamonds()
+                }, 5555);
+                    {% block get_comments %}
+                    {% endblock %}
+            }
+
+            {% endif %}
+
+            {% block script %}
+            {% endblock %}
+
+
+        </script>
+
+	</head>
+
+	<body>
+        <header>
+            <img id="logo-image" src="{% static 'friend/FriendBook.png' %}" width="250" /> <h1 class="glow">FriendBook</h1>
+        </header>
+
+        <nav>
+            {% if user.is_authenticated %}
+                Logged in as {{ user.username }} &mdash; <a href="{% url 'logout' %}?next=/">Logout</a> <br />
+                <p id="energy_status"><strong>Energy: </strong><em id="energy_style">{{ user.friend.energy }}</em>/100</p>
+                <p id="diamond_status"><strong>Diamonds: </strong><em id="diamond_style">{{ user.friend.diamonds }}</em></p>
+
+            {% else %}
+                Not logged in &mdash; <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+            <ul class="no_dot">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'comment_page' %}">Plaza</a></li>
+                <li><a href="{% url 'market' %}">Market</a></li>
+                <li><a href="{% url 'ladder' %}">Ladder</a></li>
+                <li><a href="{% url 'active_friend_page' %}">My Friend Page</a></li>
+                <li><a href="{% url 'friend_search' %}">Search for a Friend</a></li>
+                <li><a href="{% url 'add_topic' %}">Create a Topic</a></li>
+                <li><a href="{% url 'topic_search' %}">Find a Topic</a></li>
+            </ul>
+        </nav>
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <footer>
+            <p>www.dustinsfriendbook.cu.cc</p>
+            <p>Made by: Dustin Cook</p>
+        </footer>
+
+	</body>
+
+</html>

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>Click the choose file button to brows for an image to upload then click submit.</p>
+<form action="{% url 'edit_friend_picture' friend_id=user.friend.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit"/>
+</form>    
+{% endblock %}

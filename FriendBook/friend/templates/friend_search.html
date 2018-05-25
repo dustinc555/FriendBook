@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'friend_search' %}" method="get">
+            Search: <input type="text" name="search_string" value="{% if search %} {{ search }} {% endif %}" /> <input type="submit" value"Search" />
+</form>
+<hr />
+{% for user in users %}
+    <li class="friend_search_list"><strong>Name: </strong><a href="{% url 'friend_page' friend_id=user.friend.id %}">{{ user }}</a></li>
+{% endfor %}
+{% endblock %}

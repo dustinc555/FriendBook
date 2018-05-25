@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if registered %}
+    <h2>Thanks for registering!</h2> <br />
+    <h3>Login to see your new friend page!</h3>
+{% else %}
+
+    {% if user.is_authenticated %}
+        <h3>Already logged in as {{ user.username }} </h3> <br />
+        <p>If you wish to create an account, please logout.</p>
+    {% else %}
+        <h3>Create your account with me here.</h3> <br />
+        <hr />
+        <form method="post" action="{% url 'add_user' %}">
+            {{ form.as_p }}
+            {% csrf_token %}
+        <input type="submit" value="submit" />
+        </form>
+    {% endif %}
+{% endif %}
+{% endblock %}

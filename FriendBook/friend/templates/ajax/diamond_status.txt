@@ -1,0 +1,1 @@
+<strong>Diamonds: </strong><em id="diamond_style">{{ diamonds }}</em>
