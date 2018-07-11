@@ -6,7 +6,7 @@
 <ul id="comments_status" style="list-style-type: none;">
 {% for comment in comments %}
     <li class="comment_page_comment"><strong><a href="{% url 'friend_page' friend_id=comment.commenter.id %}" >{{ comment.commenter }}</a> said:</strong><br />{{ comment }}<br />
-        
+
     {% if user.is_authenticated and comment.commenter == user.friend %}
         <form action="{% url 'del_cp_comment' %}" method="post" onsubmit="return prompt_delete_tp_comment();">
             {% csrf_token %}
@@ -36,9 +36,9 @@ request.onreadystatechange = function() {
      if (request.readyState == 4 && request.status == 200)
          element.innerHTML = request.responseText;
      };
-    request.open("GET", "{% url 'ajax_comments_status' %}", true);
+    request.open("GET", "{% url 'ajax_comments_status' %}", false);
     request.send();
-                                
+
 }
 {% endblock %}
 

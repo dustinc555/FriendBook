@@ -37,7 +37,7 @@
                 if (request.readyState == 4 && request.status == 200)
                                 element.innerHTML = request.responseText;
                 };
-                    request.open("GET", "{% url 'ajax_energy_status' %}", true);
+                    request.open("GET", "{% url 'ajax_energy_status' %}", false);
                     request.send();
 
             }
@@ -49,7 +49,7 @@
                 if (request.readyState == 4 && request.status == 200)
                     element.innerHTML = request.responseText;
                 };
-                    request.open("GET", "{% url 'ajax_diamond_status' %}", true);
+                    request.open("GET", "{% url 'ajax_diamond_status' %}", false);
                     request.send();
 
             }
@@ -59,11 +59,11 @@
             window.onload = function(){
                 window.setInterval(function() {
                     get_energy()
-                    }, 5001);
+									}, 5000);
 
                 window.setInterval(function() {
                     get_diamonds()
-                }, 5555);
+                }, 5000);
                     {% block get_comments %}
                     {% endblock %}
             }
