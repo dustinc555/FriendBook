@@ -3,9 +3,13 @@ A demo social media site.
 
 # REQUIREMENTS
 Python3
+
 Pip
+
   Pip -> Django
+  
   Pip -> Pillow
+  
 
 # SETUP
 In order to start the development server,
