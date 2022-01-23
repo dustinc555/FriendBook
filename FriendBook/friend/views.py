@@ -9,6 +9,8 @@ from django.conf.urls.static import static
 #for login
 from django.contrib.auth.decorators import login_required
 
+from django.urls import reverse
+
 # Create your views here.
 # ^~~ thank you django, i shall!
 

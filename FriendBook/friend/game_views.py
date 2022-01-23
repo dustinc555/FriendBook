@@ -8,6 +8,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from friend.forms import *
 from django.conf.urls.static import static
 
+from django.urls import reverse
+
 #for login
 from django.contrib.auth.decorators import login_required
 
